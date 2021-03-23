@@ -12,9 +12,29 @@ body {
   font-family: "Poppins", sans-serif;
 }
 
+/* change to Search component */
+header {
+  display: flex;
+  justify-content: flex-end;
+  background-color: #373b69;
+  padding: 1rem;
+}
+
+.searchBar {
+  background-color: transparent;
+  border: 2px solid #22254b;
+  border-radius: 50px; /*can add radius to border above */
+  outline: none;
+  padding: 0.5rem 1.5rem;
+  color: white;
+  font-family: inherit;
+  font-size: 1.2rem;
+}
+
 .movieContainer {
   display: flex;
   flex-wrap: wrap;
+  justify-content: space-around;
 }
 
 .movie {
