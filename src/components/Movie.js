@@ -14,7 +14,14 @@ const setVoteClass = (vote) => {
 
 const Movie = ({ title, poster_path, overview, vote_average }) => (
   <div className="movie">
-    <img src={IMAGE_API + poster_path} alt={title} />
+    <img
+      src={
+        poster_path
+          ? IMAGE_API + poster_path
+          : "https://images.unsplash.com/photo-1533488765986-dfa2a9939acd?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=967&q=80"
+      }
+      alt={title}
+    />
     <div className="movieInfo">
       <h3>{title}</h3>
       <span className={`tag ${setVoteClass(vote_average)}`}>
