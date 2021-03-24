@@ -34,7 +34,7 @@ header {
 .movieContainer {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-around;
+  justify-content: center;/*space-around*/
 }
 
 .movie {
@@ -61,6 +61,25 @@ header {
 /* .movieInfo h3 {
   margin: 0;
 } */
+
+.tag {
+  background-color: #22254b;
+  border-radius: 10px;
+  font-weight: bold;
+  padding: 0.5rem;
+}
+
+.tag.green {
+  color: rgb(4, 223, 4);
+}
+
+.tag.yellow {
+  color: yellow;
+}
+
+.tag.red {
+  color: red;
+}
 
 .movieOverview {
   background-color: white;

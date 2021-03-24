@@ -21,8 +21,11 @@ function App() {
 
   // search for movies when search input changes
   useEffect(() => {
-    if (searchInput.length > 3) {
+    if (searchInput.length >= 3) {
       getMovies(SEARCH_API + searchInput);
+    } else {
+      // does this make too many calls? Save featured to local storage first?
+      getMovies(FEATURED_API)
     }
   }, [searchInput]);
 
