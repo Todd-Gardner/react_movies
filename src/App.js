@@ -12,6 +12,7 @@ const SEARCH_API = `https://api.themoviedb.org/3/search/movie?&api_key=${REACT_A
 
 TODO:
 // *** Change readme and create github repo ***
+// refactor (ie. movieCard)
 // change movie search to include actors in results
 // add actor name/link to the result card(s). Link will search actors other movies
 // add button for trailer to result card
@@ -20,6 +21,7 @@ TODO:
 // CHANGE: header etc into own component(s)
 // MAYBE: change display to rows with featured, top rated, favorites sections. If do this have movie preview at top of page (not modal) on desktop. keep modal on mobile
 // if adding favorites, will need to set up a database to save them
+// MAYBE: change the movie description to flip the card to display rather then sliding up onto the card OR make poster image resize so both are visible
 // *** make sure env variables aren't being seen. Need to add server or do on back end? ***
 // -----
 
