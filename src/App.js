@@ -10,7 +10,7 @@ const SEARCH_API = `https://api.themoviedb.org/3/search/movie?&api_key=${REACT_A
 // const IMAGE_API = `https://image.tmdb.org/t/p/w1280`;
 // const TRAILER = ``;
 
-TODO:
+//TODO:
 // *** Change readme and create github repo ***
 // refactor (ie. movieCard)
 // change movie search to include actors in results
