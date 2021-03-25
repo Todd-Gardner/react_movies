@@ -10,6 +10,19 @@ const SEARCH_API = `https://api.themoviedb.org/3/search/movie?&api_key=${REACT_A
 // const IMAGE_API = `https://image.tmdb.org/t/p/w1280`;
 // const TRAILER = ``;
 
+TODO:
+// *** Change readme and create github repo ***
+// change movie search to include actors in results
+// add actor name/link to the result card(s). Link will search actors other movies
+// add button for trailer to result card
+// add modal for trailer (trailer from tmdb/imbd or youtube). Get API key if needed
+// FIX: or get rid of form onSubmit. Not displaying results before clearing field -> because onChange defaults to featured movies...
+// CHANGE: header etc into own component(s)
+// MAYBE: change display to rows with featured, top rated, favorites sections. If do this have movie preview at top of page (not modal) on desktop. keep modal on mobile
+// if adding favorites, will need to set up a database to save them
+// *** make sure env variables aren't being seen. Need to add server or do on back end? ***
+// -----
+
 function App() {
   const [movies, setMovies] = useState([]);
   const [searchInput, setSearchInput] = useState("");
