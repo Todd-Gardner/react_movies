@@ -6,9 +6,16 @@ const { REACT_APP_TMDB_API_KEY } = process.env;
 
 // list of tmdb API urls
 const FEATURED_API = `https://api.themoviedb.org/3/discover/movie?sort=popularity.desc&api_key=${REACT_APP_TMDB_API_KEY}&page=1`;
-const SEARCH_API = `https://api.themoviedb.org/3/search/movie?&api_key=${REACT_APP_TMDB_API_KEY}&query=`;
+const SEARCH_API = `https://api.themoviedb.org/3/search/movie?&api_key=${REACT_APP_TMDB_API_KEY}&language=en-US&query=`;
 // const IMAGE_API = `https://image.tmdb.org/t/p/w1280`;
 // const TRAILER = ``;
+
+// use append_to_response to get more data using a single http request (API call). Use movie id:
+// https://api.themoviedb.org/3/movie/157336?api_key=${REACT_APP_TMDB_API_KEY}&append_to_response=videos,images
+
+// search movies, tv and actors:
+// https://api.themoviedb.org/3/search/multi?api_key=${REACT_APP_TMDB_API_KEY}&language=en-US&page=1&include_adult=false
+// https://api.themoviedb.org/3/search/multi?api_key=${REACT_APP_TMDB_API_KEY}&language=en-US&query=jennifer&page=1
 
 //TODO:
 // *** Change readme and create github repo ***
@@ -34,7 +41,7 @@ function App() {
     getMovies(FEATURED_API);
   }, []);
 
-  // search for movies when search input changes
+  // auto-search for movies when search input changes
   useEffect(() => {
     if (searchInput.length >= 3) {
       getMovies(SEARCH_API + searchInput);
@@ -47,18 +54,25 @@ function App() {
   async function getMovies(API) {
     const response = await fetch(API);
     const jsonData = await response.json();
-    setMovies(jsonData.results);
+
+    // Remove movies with a 0 rating
+    const filteredMovies = jsonData.results.filter((movie) => movie.vote_average > 0)
+    console.log(`filteredMovies`, filteredMovies)
+
+    setMovies(filteredMovies);
   }
 
-  const handleOnSubmit = (e) => {
-    e.preventDefault();
+  // Only need the onSubmit if not using the 'auto-search'
+  // const handleOnSubmit = (e) => {
+  //   e.preventDefault();
 
-    if (searchInput) {
-      getMovies(SEARCH_API + searchInput);
-      setSearchInput("");
-    }
-  };
+  //   if (searchInput) {
+  //     getMovies(SEARCH_API + searchInput);
+  //     setSearchInput("");
+  //   }
+  // };
 
+  // Maybe use onchangeHandler for performance (less rerenders?)
   // const onChangeHandler = (e) => {
   //   setSearchInput(e.target.value);
   //   if (e.target.value.length > 3) {
