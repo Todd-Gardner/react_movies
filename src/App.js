@@ -18,7 +18,6 @@ const SEARCH_API = `https://api.themoviedb.org/3/search/movie?&api_key=${REACT_A
 // https://api.themoviedb.org/3/search/multi?api_key=${REACT_APP_TMDB_API_KEY}&language=en-US&query=jennifer&page=1
 
 //TODO:
-// *** Change readme and create github repo ***
 // refactor (ie. movieCard)
 // change movie search to include actors in results
 // add actor name/link to the result card(s). Link will search actors other movies
@@ -47,7 +46,7 @@ function App() {
       getMovies(SEARCH_API + searchInput);
     } else {
       // does this make too many calls? Save featured to local storage first?
-      getMovies(FEATURED_API)
+      getMovies(FEATURED_API);
     }
   }, [searchInput]);
 
@@ -56,8 +55,10 @@ function App() {
     const jsonData = await response.json();
 
     // Remove movies with a 0 rating
-    const filteredMovies = jsonData.results.filter((movie) => movie.vote_average > 0)
-    console.log(`filteredMovies`, filteredMovies)
+    const filteredMovies = jsonData.results.filter(
+      (movie) => movie.vote_average > 0
+    );
+    console.log(`filteredMovies`, filteredMovies);
 
     setMovies(filteredMovies);
   }
@@ -86,9 +87,9 @@ function App() {
 
   return (
     <div>
-      {/* change header to Search component */}
+      {/* change header to a Search component */}
       <header>
-        <form onSubmit={handleOnSubmit}>
+        <form /*onSubmit={handleOnSubmit}*/>
           <input
             className="searchBar"
             placeholder="Search movies..."
@@ -100,7 +101,9 @@ function App() {
       </header>
       <div className="movieContainer">
         {movies /*.length > 0*/ &&
-          movies.map((movie) => <Movie key={movie.id} {...movie} />)}
+          movies.map((movie) => (
+            <Movie key={movie.id} API_KEY={REACT_APP_TMDB_API_KEY} {...movie} />
+          ))}
       </div>
     </div>
   );
