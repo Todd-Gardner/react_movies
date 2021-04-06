@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 const IMAGE_API = `https://image.tmdb.org/t/p/w1280`;
 
@@ -12,19 +12,39 @@ const setVoteClass = (vote) => {
   }
 };
 
-const getMovieDetails = async (id, API_KEY) => {
-  const MOVIE_DETAILS = `https://api.themoviedb.org/3/movie/${id}?api_key=${API_KEY}&append_to_response=videos,images`;
-
-  const response = await fetch(MOVIE_DETAILS);
-  const jsonData = await response.json();
-  console.log(`jsonData`, jsonData);
-};
-
 const getTrailer = (id) => {
   alert(`${id} was clicked`);
 };
 
 const Movie = ({ title, poster_path, overview, vote_average, id, API_KEY }) => {
+  const [actorList, setActorList] = useState([]);
+
+  const getMovieDetails = async (id, API_KEY) => {
+    const MOVIE_DETAILS = `https://api.themoviedb.org/3/movie/${id}?api_key=${API_KEY}&append_to_response=videos,credits`;
+
+    const response = await fetch(MOVIE_DETAILS);
+    const movieData = await response.json();
+    console.log(`movieData`, movieData);
+    //const credits = movieData.credits;
+    const cast = await movieData.credits.cast;
+
+    // Get list of first 5 actors/characters and save to state
+    //https://api.themoviedb.org/3/person/{person_id}/images?api_key=<<api_key>>
+    let topFive = [];
+    for (let i = 0; i < 5; i++) {
+      const actorDetails = {
+        id: cast[i].id,
+        name: cast[i].name,
+        character: cast[i].character,
+        profilePic: <img src={ IMAGE_API + cast[i].profile_path } alt="profile" />,
+      };
+      topFive.push(actorDetails);
+    }
+    setActorList(topFive);
+    //setActorList(...actorList, cast);
+  };
+  console.log(`actorList`, actorList);
+
   return (
     <div
       className="movieCard"
@@ -52,6 +72,15 @@ const Movie = ({ title, poster_path, overview, vote_average, id, API_KEY }) => {
           <h2>{title} Overview:</h2>
           <p>{overview}</p>
           <button onClick={() => getTrailer(id)}>Watch Trailer</button>
+          {actorList.length > 0 &&
+            actorList.map((actor) => {
+              return (
+                <div key={actor.id}>
+                  Character: {actor.character}
+                  Played by: {actor.name }
+                  {actor.profilePic }
+                </div>
+              );})}
         </div>
       </div>
     </div>

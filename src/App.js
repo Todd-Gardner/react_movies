@@ -52,10 +52,10 @@ function App() {
 
   async function getMovies(API) {
     const response = await fetch(API);
-    const jsonData = await response.json();
+    const movieData = await response.json();
 
     // Remove movies with a 0 rating
-    const filteredMovies = jsonData.results.filter(
+    const filteredMovies = movieData.results.filter(
       (movie) => movie.vote_average > 0
     );
     console.log(`filteredMovies`, filteredMovies);
