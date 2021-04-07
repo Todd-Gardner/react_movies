@@ -32,10 +32,7 @@ const Movie = ({ title, poster_path, overview, vote_average, id, API_KEY }) => {
     // Get list of first 5 actors/characters and save to state
     //https://api.themoviedb.org/3/person/{person_id}/images?api_key=<<api_key>>
     let topFive = [];
-    // if there are less than 5 cast, only show how many there are
-    // **Make DRY? / rearrange or use .map then if inside
-    //if (cast.length < 5) {
-      cast.forEach((cast) => {
+    cast.forEach((cast) => {
       if (topFive.length < 5) {
         const actorDetails = {
           id: cast.id,
@@ -43,35 +40,10 @@ const Movie = ({ title, poster_path, overview, vote_average, id, API_KEY }) => {
           character: cast.character,
           profilePic: cast.profile_path,
         };
-        topFive.push(actorDetails)
+        topFive.push(actorDetails);
       }
     });
     setActorList(topFive);
-    // for (let i = 0; i < cast.length; i++) {
-    //   const actorDetails = {
-    //     id: cast[i].id,
-    //     name: cast[i].name,
-    //     character: cast[i].character,
-    //     profilePic: cast[i].profile_path,
-    //   };
-    //   topFive.push(actorDetails);
-    // }
-    // } else {
-    //   for (let i = 0; i < 5; i++) {
-    //     const actorDetails = {
-    //       id: cast[i].id,
-    //       name: cast[i].name,
-    //       character: cast[i].character,
-    //       profilePic: cast[i].profile_path,
-    //       // profilePic: (
-    //       //   <img src={ IMAGE_API + cast[i].profile_path } alt="profile" />
-    //       // ), ---moved this to return statement
-    //     };
-    //     topFive.push(actorDetails);
-    //   }
-    // }
-    //setActorList(topFive);
-    //setActorList(...actorList, cast);
   };
   console.log(`actorList`, actorList);
 
