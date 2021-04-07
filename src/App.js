@@ -18,7 +18,7 @@ const SEARCH_API = `https://api.themoviedb.org/3/search/movie?&api_key=${REACT_A
 // https://api.themoviedb.org/3/search/multi?api_key=${REACT_APP_TMDB_API_KEY}&language=en-US&query=jennifer&page=1
 
 //TODO:
-// refactor (ie. movieCard)
+// refactor (ie. movieCard, moviesContainer etc)
 // change movie search to include actors in results
 // add actor name/link to the result card(s). Link will search actors other movies
 // add button for trailer to result card

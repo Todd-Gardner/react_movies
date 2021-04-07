@@ -58,6 +58,8 @@ header {
   padding: 1rem;
   align-items: center;
   justify-content: space-between;
+  height: 88px
+
 }
 
 /* .movieInfo h3 {
