@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
+
 import Movie from "./components/Movie";
+import VideoPreview from './components/VideoPreview'
 
 // get API key from local .env
 const { REACT_APP_TMDB_API_KEY } = process.env;
@@ -99,6 +101,7 @@ function App() {
           />
         </form>
       </header>
+      <VideoPreview />
       <div className="movieContainer">
         {movies /*.length > 0*/ &&
           movies.map((movie) => (

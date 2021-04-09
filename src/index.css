@@ -1,12 +1,12 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;600&display=swap");
 
-* {
+/* * {
   box-sizing: border-box;
   margin: 0;
-}
+} */
 
 body {
-  /* margin: 0; */
+  margin: 0;
   background-color: #22254b;
   color: white;
   font-family: "Poppins", sans-serif;
@@ -33,8 +33,12 @@ header {
 
 .movieContainer {
   display: flex;
-  flex-wrap: wrap;
   justify-content: center; /*space-around*/
+  flex-wrap: wrap;
+  /* for horizontal scroll
+  ------------------------
+  flex-wrap: no-wrap;
+  overflow-x: auto; */
 }
 
 .movie {
@@ -118,4 +122,22 @@ header {
 
 .movie:hover .movieOverview {
   transform: translateY(0%);
+}
+
+/* .actorInfo {};
+
+.actorInfo img {}; */
+
+.video {
+  border: 1px solid white;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  scroll-snap-align: start;
+}
+
+.videoPlayer {
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
 }

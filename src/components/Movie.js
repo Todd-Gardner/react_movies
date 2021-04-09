@@ -12,13 +12,19 @@ const setVoteClass = (vote) => {
   }
 };
 
-const getTrailer = (id) => {
-  alert(`${id} was clicked`);
-};
-
-const Movie = ({ title, poster_path, overview, vote_average, id, API_KEY }) => {
+const Movie = ({
+  title,
+  poster_path,
+  overview,
+  vote_average,
+  id,
+  API_KEY,
+  yt_key,
+}) => {
   const [actorList, setActorList] = useState([]);
+  const [movieInfo, setMovieInfo] = useState([]);
 
+  // Will be in seperate Component...
   const getMovieDetails = async (id, API_KEY) => {
     // Maybe add /movie/${id}/watch/providers (append?) in future
     const MOVIE_DETAILS = `https://api.themoviedb.org/3/movie/${id}?api_key=${API_KEY}&append_to_response=videos,credits`;
@@ -26,6 +32,8 @@ const Movie = ({ title, poster_path, overview, vote_average, id, API_KEY }) => {
     const response = await fetch(MOVIE_DETAILS);
     const movieData = await response.json();
     console.log(`movieData`, movieData);
+    setMovieInfo(movieData);
+
     //const credits = movieData.credits;
     const cast = await movieData.credits.cast;
 
@@ -46,6 +54,24 @@ const Movie = ({ title, poster_path, overview, vote_average, id, API_KEY }) => {
     setActorList(topFive);
   };
   console.log(`actorList`, actorList);
+
+  // rightn here... need to extract the youtube key maybe set 'movieDetails/Data on HOVER
+  //  maybe do in the main app cmpt when all the movies load...
+
+  // Will be in seperate Component
+  // const getTrailer = async (key) => {
+  //   const YOUTUBE_API = `https://www.youtube.com/watch?v=${key}`;
+  //   console.log(`movieInfo`, movieInfo);
+  //   const videos = await movieInfo.videos.results;
+  //   console.log(`videos`, videos);
+  // };
+  const getTrailer = () => {
+    return (
+      <div className="video">
+        <video className='videoPlayer' src="https://www.youtube.com/watch?v=BdJKm16Co6M" />
+      </div>
+    );
+  };
 
   return (
     <div
@@ -73,7 +99,7 @@ const Movie = ({ title, poster_path, overview, vote_average, id, API_KEY }) => {
         <div className="movieOverview">
           <h2>{title} Overview:</h2>
           <p>{overview}</p>
-          <button onClick={() => getTrailer(id)}>Watch Trailer</button>
+          <button onClick={() => getTrailer()}>Watch Trailer</button>
 
           {actorList.length > 0 &&
             actorList.map((actor) => {
