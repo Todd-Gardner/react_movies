@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import VideoPreview from "./VideoPreview";
 
 const IMAGE_API = `https://image.tmdb.org/t/p/w1280`;
 
@@ -12,15 +13,7 @@ const setVoteClass = (vote) => {
   }
 };
 
-const Movie = ({
-  title,
-  poster_path,
-  overview,
-  vote_average,
-  id,
-  API_KEY,
-  yt_key,
-}) => {
+const Movie = ({ title, poster_path, overview, vote_average, id, API_KEY }) => {
   const [actorList, setActorList] = useState([]);
   const [movieInfo, setMovieInfo] = useState([]);
 
@@ -36,6 +29,8 @@ const Movie = ({
 
     //const credits = movieData.credits;
     const cast = await movieData.credits.cast;
+    const ytTest = await movieData.videos.results[0].key;
+    console.log(`ytTest`, ytTest);
 
     // Get list of first 5 actors/characters and save to state
     //https://api.themoviedb.org/3/person/{person_id}/images?api_key=<<api_key>>
@@ -66,10 +61,12 @@ const Movie = ({
   //   console.log(`videos`, videos);
   // };
   const getTrailer = () => {
+    const test = movieInfo.videos.results[0].key;
     return (
-      <div className="video">
-        <video className='videoPlayer' src="https://www.youtube.com/watch?v=BdJKm16Co6M" />
-      </div>
+      <VideoPreview videoKey={test} />
+      // <div className="video">
+      //   <video className='videoPlayer' src="https://www.youtube.com/watch?v=BdJKm16Co6M" />
+      // </div>
     );
   };
 
@@ -101,16 +98,26 @@ const Movie = ({
           <p>{overview}</p>
           <button onClick={() => getTrailer()}>Watch Trailer</button>
 
-          {actorList.length > 0 &&
-            actorList.map((actor) => {
-              return (
-                <div className="actorInfo" key={actor.id}>
-                  Character: {actor.character}
-                  Played by: {actor.name}
-                  <img src={IMAGE_API + actor.profilePic} alt="profile" />
-                </div>
-              );
-            })}
+          <div className="test">
+            {movieInfo.videos ? (
+              <VideoPreview videoKey={movieInfo.videos.results[0].key} />
+            ) : (
+              ""
+            )}
+          </div>
+
+          <div>
+            {actorList.length > 0 &&
+              actorList.map((actor) => {
+                return (
+                  <div className="actorInfo" key={actor.id}>
+                    Character: {actor.character}
+                    Played by: {actor.name}
+                    <img src={IMAGE_API + actor.profilePic} alt="profile" />
+                  </div>
+                );
+              })}
+          </div>
         </div>
       </div>
     </div>
