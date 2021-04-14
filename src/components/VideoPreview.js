@@ -2,9 +2,9 @@ import React, { useEffect, useState } from "react";
 import YouTubePlayer from "react-player/youtube";
 
 // The movie display (to be a modal...?)
-const VideoPreview = ({videoKey}) => {
+const VideoPreview = ({ videoKey }) => {
   const youTube_API = "https://www.youtube.com/watch?v=";
-  const key = videoKey || "BdJKm16Co6M";
+  let key = videoKey || "BdJKm16Co6M";
   // const [trailer, setTrailer] = useState();
   // useEffect(() => {
   //   preview(youTube_API, videoKey);

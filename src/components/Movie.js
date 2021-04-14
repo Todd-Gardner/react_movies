@@ -13,7 +13,16 @@ const setVoteClass = (vote) => {
   }
 };
 
-const Movie = ({ title, poster_path, overview, vote_average, id, API_KEY }) => {
+const Movie = ({
+  title,
+  poster_path,
+  overview,
+  vote_average,
+  id,
+  API_KEY,
+  setMovieData,
+  openModal,
+}) => {
   const [actorList, setActorList] = useState([]);
   const [movieInfo, setMovieInfo] = useState([]);
 
@@ -26,29 +35,31 @@ const Movie = ({ title, poster_path, overview, vote_average, id, API_KEY }) => {
     const movieData = await response.json();
     console.log(`movieData`, movieData);
     setMovieInfo(movieData);
+    setMovieData(movieData);
+    //openModal()
 
-    //const credits = movieData.credits;
-    const cast = await movieData.credits.cast;
-    const ytTest = await movieData.videos.results[0].key;
-    console.log(`ytTest`, ytTest);
+    // //const credits = movieData.credits;
+    // const cast = await movieData.credits.cast;
+    // const ytTest = await movieData.videos.results[0].key;
+    // console.log(`ytTest`, ytTest);
 
-    // Get list of first 5 actors/characters and save to state
-    //https://api.themoviedb.org/3/person/{person_id}/images?api_key=<<api_key>>
-    let topFive = [];
-    cast.forEach((cast) => {
-      if (topFive.length < 5) {
-        const actorDetails = {
-          id: cast.id,
-          name: cast.name,
-          character: cast.character,
-          profilePic: cast.profile_path,
-        };
-        topFive.push(actorDetails);
-      }
-    });
-    setActorList(topFive);
+    // // Get list of first 5 actors/characters and save to state
+    // //https://api.themoviedb.org/3/person/{person_id}/images?api_key=<<api_key>>
+    // let topFive = [];
+    // cast.forEach((cast) => {
+    //   if (topFive.length < 5) {
+    //     const actorDetails = {
+    //       id: cast.id,
+    //       name: cast.name,
+    //       character: cast.character,
+    //       profilePic: cast.profile_path,
+    //     };
+    //     topFive.push(actorDetails);
+    //   }
+    // });
+    // setActorList(topFive);
   };
-  console.log(`actorList`, actorList);
+  //console.log(`actorList`, actorList);
 
   // rightn here... need to extract the youtube key maybe set 'movieDetails/Data on HOVER
   //  maybe do in the main app cmpt when all the movies load...
@@ -60,22 +71,24 @@ const Movie = ({ title, poster_path, overview, vote_average, id, API_KEY }) => {
   //   const videos = await movieInfo.videos.results;
   //   console.log(`videos`, videos);
   // };
-  const getTrailer = () => {
-    const test = movieInfo.videos.results[0].key;
-    return (
-      <VideoPreview videoKey={test} />
-      // <div className="video">
-      //   <video className='videoPlayer' src="https://www.youtube.com/watch?v=BdJKm16Co6M" />
-      // </div>
-    );
+  const showDetails = () => {
+    // const test = movieInfo.videos.results[0].key;
+    // return (
+    //   <VideoPreview videoKey={test} />
+    //   // <div className="video">
+    //   //   <video className='videoPlayer' src="https://www.youtube.com/watch?v=BdJKm16Co6M" />
+    //   // </div>
+    // );
   };
 
   return (
     <div
       className="movieCard"
       onClick={() => {
-        getMovieDetails(id, API_KEY);
+        getMovieDetails(id, API_KEY)//.then(openModal);
+        // openModal = !openModal;
       }}
+      // openModal={openModal}
     >
       <div className="movie">
         <img
@@ -96,17 +109,17 @@ const Movie = ({ title, poster_path, overview, vote_average, id, API_KEY }) => {
         <div className="movieOverview">
           <h2>{title} Overview:</h2>
           <p>{overview}</p>
-          <button onClick={() => getTrailer()}>Watch Trailer</button>
+          <button onClick={() => showDetails()}>Movie Details</button>
 
-          <div className="test">
+          {/* <div className="test">
             {movieInfo.videos ? (
               <VideoPreview videoKey={movieInfo.videos.results[0].key} />
             ) : (
-              ""
+              "no video"
             )}
-          </div>
+          </div> */}
 
-          <div>
+          {/* <div>
             {actorList.length > 0 &&
               actorList.map((actor) => {
                 return (
@@ -117,7 +130,7 @@ const Movie = ({ title, poster_path, overview, vote_average, id, API_KEY }) => {
                   </div>
                 );
               })}
-          </div>
+          </div> */}
         </div>
       </div>
     </div>

@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
 
 import Movie from "./components/Movie";
-import VideoPreview from './components/VideoPreview'
-
+import MovieDetails from "./components/MovieDetails";
 // get API key from local .env
 const { REACT_APP_TMDB_API_KEY } = process.env;
 
@@ -36,6 +35,8 @@ const SEARCH_API = `https://api.themoviedb.org/3/search/movie?&api_key=${REACT_A
 function App() {
   const [movies, setMovies] = useState([]);
   const [searchInput, setSearchInput] = useState("");
+  const [movieData, setMovieData] = useState([]);
+  const [modalOpen, setModalOpen] = useState(false);
 
   // get initial list of movies on loading
   useEffect(() => {
@@ -65,27 +66,9 @@ function App() {
     setMovies(filteredMovies);
   }
 
-  // Only need the onSubmit if not using the 'auto-search'
-  // const handleOnSubmit = (e) => {
-  //   e.preventDefault();
-
-  //   if (searchInput) {
-  //     getMovies(SEARCH_API + searchInput);
-  //     setSearchInput("");
-  //   }
-  // };
-
-  // Maybe use onchangeHandler for performance (less rerenders?)
-  // const onChangeHandler = (e) => {
-  //   setSearchInput(e.target.value);
-  //   if (e.target.value.length > 3) {
-  //     getMovies(SEARCH_API + searchInput);
-  //     // for using promise, not async/await
-  //     // fetch(SEARCH_API + searchInput)
-  //     //   .then((res) => res.json())
-  //     //   .then((data) => setMovies(data.results));
-  //   }
-  // };
+  const toggleModal = () => {
+    setModalOpen((modalOpen) => !modalOpen);
+  };
 
   return (
     <div>
@@ -101,11 +84,31 @@ function App() {
           />
         </form>
       </header>
-      {/* <VideoPreview videoKey='HqzWCNbX_wg' /> */}
       <div className="movieContainer">
+        {/* <VideoPreview videoKey="HqzWCNbX_wg" /> */}
+        {modalOpen ? (
+          <MovieDetails
+            releaseDate={movieData.release_date}
+            overview={movieData.overview}
+            credits={movieData.credits}
+            videos={movieData.videos}
+            title={movieData.title}
+            //movieData={movieData}
+          />
+        ) : (
+          "modal"
+        )}
         {movies /*.length > 0*/ &&
           movies.map((movie) => (
-            <Movie key={movie.id} API_KEY={REACT_APP_TMDB_API_KEY} {...movie} />
+            <Movie
+              key={movie.id}
+              API_KEY={REACT_APP_TMDB_API_KEY}
+              {...movie}
+              setMovieData={(movieData) => {
+                setMovieData((movieData, movieData));
+              }}
+              openModal={(modalOpen) => setModalOpen((modalOpen = !modalOpen))}
+            />
           ))}
       </div>
     </div>
@@ -113,3 +116,25 @@ function App() {
 }
 
 export default App;
+
+// Only need the onSubmit if not using the 'auto-search'
+// const handleOnSubmit = (e) => {
+//   e.preventDefault();
+
+//   if (searchInput) {
+//     getMovies(SEARCH_API + searchInput);
+//     setSearchInput("");
+//   }
+// };
+
+// Maybe use onchangeHandler for performance (less rerenders?)
+// const onChangeHandler = (e) => {
+//   setSearchInput(e.target.value);
+//   if (e.target.value.length > 3) {
+//     getMovies(SEARCH_API + searchInput);
+//     // for using promise, not async/await
+//     // fetch(SEARCH_API + searchInput)
+//     //   .then((res) => res.json())
+//     //   .then((data) => setMovies(data.results));
+//   }
+// };
