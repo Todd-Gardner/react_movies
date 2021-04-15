@@ -71,7 +71,7 @@ function App() {
   };
 
   return (
-    <div>
+    <div className='app'>
       {/* change header to a Search component */}
       <header>
         <form /*onSubmit={handleOnSubmit}*/>
@@ -84,20 +84,34 @@ function App() {
           />
         </form>
       </header>
+      {modalOpen ? (
+        <MovieDetails
+          releaseDate={movieData.release_date}
+          overview={movieData.overview}
+          credits={movieData.credits}
+          videos={movieData.videos}
+          title={movieData.title}
+          poster_path={movieData.poster_path}
+          //movieData={movieData}
+        />
+      ) : (
+        "modal"
+      )}
       <div className="movieContainer">
         {/* <VideoPreview videoKey="HqzWCNbX_wg" /> */}
-        {modalOpen ? (
+        {/* {modalOpen ? (
           <MovieDetails
             releaseDate={movieData.release_date}
             overview={movieData.overview}
             credits={movieData.credits}
             videos={movieData.videos}
-            title={movieData.title}
+            title={ movieData.title }
+            poster_path={movieData.poster_path}
             //movieData={movieData}
           />
         ) : (
           "modal"
-        )}
+        )} */}
         {movies /*.length > 0*/ &&
           movies.map((movie) => (
             <Movie

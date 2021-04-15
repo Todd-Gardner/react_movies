@@ -6,16 +6,24 @@
 } */
 
 body {
+  /* display: flex; */
   margin: 0;
   background-color: #22254b;
   color: white;
   font-family: "Poppins", sans-serif;
 }
 
+.app {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
 /* change to Search component */
 header {
-  display: flex;
+  /* display: flex; */
   justify-content: flex-end;
+  align-items: flex-end;
   background-color: #373b69;
   padding: 1rem;
 }
@@ -125,41 +133,82 @@ header {
 }
 
 .detailsContainer {
-  display: flex;
+  /* display: flex; */
+  border: 2px solid purple;
+  padding: 5px;
+
   flex-direction: column;
-  align-items: center;
+  align-content: center;
   justify-content: center;
+  /* width: auto; */
 }
 
 .movieDetails {
-  flex-direction: column;
+  align-content: center;
+  justify-content: center;
+
+  display: flex;
+  /* border: 1px solid black; */
+  /* flex-direction: column; */
   /* height: 600px; */
 }
 
 .movieDescription {
-
-}
-
-.actorInfo {
-  flex-direction: row;
-  
-}
-
-.actorInfo img {
-  width: 200px;
-  height: 200px;
+  flex: 1;
+  /* display: flex; */
+  /* flex-direction: column; */
 }
 
 .video {
-  border: 1px solid white;
-  width: auto;
+  flex: 2;
+  /* border: 1px solid white; */
+  width: 100%;
   height: 100%;
   position: relative;
   scroll-snap-align: end;
+  overflow: hidden;
+  justify-content: center;
 }
 
 .videoPlayer {
+
+
   width: 100%;
   height: 100%;
-  object-fit: contain;
+  object-fit: scale-down;
+}
+
+.moviePoster {
+}
+
+.actorInfoContainer {
+  /* margin: 5px; */
+  padding: 5px;
+  /* border: 2px solid red; */
+  display: flex;
+  height: 250px;
+  /* align-content: space-around; */
+  /* justify-content: center; */
+  /* flex-direction: row; */
+  flex-wrap: no-wrap;
+  overflow-x: auto; 
+}
+
+.actorInfo {
+  display: flex;
+  flex-direction: column;
+  padding: 5px;
+  /* border: 2px solid green; */
+  align-items: baseline;
+  justify-content: space-evenly;
+  /* margin: 5px; */
+  /* flex-direction: row; */
+ 
+}
+
+.actorInfo img {
+  width: 150px;
+  height: 150px;
+  border-radius: 25px;
+  object-fit: fill;
 }
