@@ -18,6 +18,7 @@ const Movie = ({
   poster_path,
   overview,
   vote_average,
+  release_date,
   id,
   API_KEY,
   setMovieData,
@@ -85,7 +86,7 @@ const Movie = ({
     <div
       className="movieCard"
       onClick={() => {
-        getMovieDetails(id, API_KEY)//.then(openModal);
+        getMovieDetails(id, API_KEY); //.then(openModal);
         // openModal = !openModal;
       }}
       // openModal={openModal}
@@ -100,7 +101,9 @@ const Movie = ({
           alt={title}
         />
         <div className="movieInfo">
-          <h3>{title}</h3>
+          <h3>
+            {title}({release_date.substring(0, 4)})
+          </h3>
           <span className={`tag ${setVoteClass(vote_average)}`}>
             {vote_average}
           </span>

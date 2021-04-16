@@ -65,7 +65,7 @@ const MovieDetails = ({
   return (
     <div className="detailsContainer">
       <h2>
-        {title}({releaseDate})
+        {title}({releaseDate.substring(0,4)})
       </h2>
       <div className="movieDetails">
         <div className="movieDescription">{overview}</div>
@@ -89,9 +89,10 @@ const MovieDetails = ({
           actorList.map((actor) => {
             return (
               <div className="actorInfo" key={actor.id}>
-                {actor.character}
+                {/* {actor.character}
                 <br />
-                Played by: {actor.name}
+                Played by: */}
+                {actor.name}
                 <img src={IMAGE_API + actor.profilePic} alt="profile" />
               </div>
             );
