@@ -66,12 +66,15 @@ function App() {
     setMovies(filteredMovies);
   }
 
-  const toggleModal = () => {
-    setModalOpen((modalOpen) => !modalOpen);
+  const toggleModal = (id) => {
+    // **FIX** first movie takes 2 clicks to open
+    if (id === movieData.id) {
+      setModalOpen((modalOpen) => !modalOpen);
+    }
   };
 
   return (
-    <div className='app'>
+    <div className="app">
       {/* change header to a Search component */}
       <header>
         <form /*onSubmit={handleOnSubmit}*/>
@@ -84,7 +87,7 @@ function App() {
           />
         </form>
       </header>
-      {modalOpen ? (
+      {modalOpen && (
         <MovieDetails
           releaseDate={movieData.release_date}
           overview={movieData.overview}
@@ -94,8 +97,6 @@ function App() {
           poster_path={movieData.poster_path}
           //movieData={movieData}
         />
-      ) : (
-        "modal"
       )}
       <div className="movieContainer">
         {/* <VideoPreview videoKey="HqzWCNbX_wg" /> */}
@@ -121,7 +122,7 @@ function App() {
               setMovieData={(movieData) => {
                 setMovieData((movieData, movieData));
               }}
-              openModal={(modalOpen) => setModalOpen((modalOpen = !modalOpen))}
+              openModal={(id) => toggleModal(id)}
             />
           ))}
       </div>

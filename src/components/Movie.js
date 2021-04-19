@@ -37,7 +37,7 @@ const Movie = ({
     console.log(`movieData`, movieData);
     setMovieInfo(movieData);
     setMovieData(movieData);
-    //openModal()
+    openModal(movieInfo.id);
 
     // //const credits = movieData.credits;
     // const cast = await movieData.credits.cast;
@@ -86,7 +86,7 @@ const Movie = ({
     <div
       className="movieCard"
       onClick={() => {
-        getMovieDetails(id, API_KEY); //.then(openModal);
+        getMovieDetails(id, API_KEY); //.then(openModal(id));
         // openModal = !openModal;
       }}
       // openModal={openModal}

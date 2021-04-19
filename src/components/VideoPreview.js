@@ -24,7 +24,10 @@ const VideoPreview = ({ videoKey }) => {
 
   return (
     <div className="video">
-      <YouTubePlayer className="videoPlayer" url={`${youTube_API}${videoKey}`} />
+      <YouTubePlayer
+        className="videoPlayer"
+        url={`${youTube_API}${videoKey}`}
+      />
     </div>
   );
 };
