@@ -57,6 +57,7 @@ const MovieDetails = ({
       setVideoKey(ytKey);
     } else {
       // no video, show poster instead....
+      setVideoKey('')
     }
   }, [credits, videos]);
   console.log(`actorList`, actorList);
