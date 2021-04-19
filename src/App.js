@@ -68,14 +68,15 @@ function App() {
   }
 
   // Only need the onSubmit if not using the 'auto-search'
-  const handleOnSubmit = (e) => {
-    e.preventDefault();
+  // NEED to modify! This sets input to "" - the auto-search shows Featured if less than 3 characters!
+  // const handleOnSubmit = (e) => {
+  //   e.preventDefault();
 
-    if (searchInput) {
-      getMovies(SEARCH_API + searchInput);
-      setSearchInput("");
-    }
-  };
+  //   if (searchInput) {
+  //     getMovies(SEARCH_API + searchInput);
+  //     setSearchInput("");
+  //   }
+  // };
 
   const toggleModal = (id) => {
     // **FIX** first movie takes 2 clicks to open
@@ -88,7 +89,7 @@ function App() {
     <div className="app">
       {/* change header to a Search component */}
       <header>
-        <form onSubmit={handleOnSubmit}>
+        <form /*onSubmit={handleOnSubmit}*/>
           <input
             className="searchBar"
             placeholder="Search movies..."
@@ -124,7 +125,7 @@ function App() {
         ) : (
           "modal"
         )} */}
-        {movies /*.length > 0*/ &&
+        {movies.length > 0 ? (
           movies.map((movie) => (
             <Movie
               key={movie.id}
@@ -135,7 +136,10 @@ function App() {
               }}
               openModal={(id) => toggleModal(id)}
             />
-          ))}
+          ))
+        ) : (
+          <div>Sorry, no matches found.</div>
+        )}
       </div>
     </div>
   );
