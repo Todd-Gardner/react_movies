@@ -10,13 +10,7 @@ const MovieDetails = ({
   releaseDate,
   poster_path,
 }) => {
-  //let { credits, videos, movieData } = props
   const IMAGE_API = `https://image.tmdb.org/t/p/w1280`; //also im Movies.js
-  //console.log(`props`, props)
-  // const credits = movieData.movieData.credits
-  // const videos = movieData.movieData.videos
-  console.log(`credits`, credits);
-  console.log(`videos`, videos);
 
   const [actorList, setActorList] = useState();
   const [videoKey, setVideoKey] = useState();
@@ -34,7 +28,7 @@ const MovieDetails = ({
             id: cast.id,
             name: cast.name,
             character: cast.character,
-            profilePic: cast.profile_path
+            profilePic: cast.profile_path,
           };
           topActors.push(actorDetails);
         }
@@ -57,28 +51,26 @@ const MovieDetails = ({
       setVideoKey(ytKey);
     } else {
       // no video, show poster instead....
-      setVideoKey('')
+      setVideoKey("");
     }
   }, [credits, videos]);
-  console.log(`actorList`, actorList);
-  // const ytKey = videos.results[0].key
 
   return (
     <div className="detailsContainer">
       <h2>
-        {title}({releaseDate.substring(0,4)})
+        {title}({releaseDate.substring(0, 4)})
       </h2>
       <div className="movieDetails">
         <div className="movieDescription">{overview}</div>
         {videoKey ? (
           <VideoPreview videoKey={videoKey} />
-          ) : (
-            <div className="moviePoster">
+        ) : (
+          <div className="moviePoster">
             <img
               src={
                 { poster_path }
-                ? IMAGE_API + poster_path
-                : "https://images.unsplash.com/photo-1533488765986-dfa2a9939acd?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=967&q=80"
+                  ? IMAGE_API + poster_path
+                  : "https://images.unsplash.com/photo-1533488765986-dfa2a9939acd?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=967&q=80"
               }
               alt={title}
             />
