@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import VideoPreview from "./VideoPreview";
 
 const IMAGE_API = `https://image.tmdb.org/t/p/w1280`;
 
@@ -24,7 +23,7 @@ const Movie = ({
   setMovieData,
   openModal,
 }) => {
-  const [actorList, setActorList] = useState([]);
+  // const [actorList, setActorList] = useState([]);
   const [movieInfo, setMovieInfo] = useState([]);
 
   // Will be in seperate Component...

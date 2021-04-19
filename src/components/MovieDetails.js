@@ -26,20 +26,20 @@ const MovieDetails = ({
       const cast = credits.cast;
       console.log(`cast`, cast);
 
-      // Get top five actors
-      let topFive = [];
+      // Get top n actors
+      let topActors = [];
       cast.forEach((cast) => {
-        if (topFive.length < 5) {
+        if (topActors.length < 10) {
           const actorDetails = {
             id: cast.id,
             name: cast.name,
             character: cast.character,
-            profilePic: cast.profile_path,
+            profilePic: cast.profile_path
           };
-          topFive.push(actorDetails);
+          topActors.push(actorDetails);
         }
       });
-      setActorList(topFive);
+      setActorList(topActors);
     }
 
     // Find the 'YouTube video trailer' - if none, display the poster
@@ -93,7 +93,14 @@ const MovieDetails = ({
                 <br />
                 Played by: */}
                 {actor.name}
-                <img src={IMAGE_API + actor.profilePic} alt="profile" />
+                <img
+                  src={
+                    actor.profilePic
+                      ? IMAGE_API + actor.profilePic
+                      : "https://images.unsplash.com/photo-1616582607004-eba71ce01e07?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=639&q=80"
+                  }
+                  alt="profile"
+                />
               </div>
             );
           })}

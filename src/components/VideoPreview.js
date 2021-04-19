@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import YouTubePlayer from "react-player/youtube";
 
 // The movie display (to be a modal...?)
