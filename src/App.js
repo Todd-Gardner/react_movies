@@ -49,6 +49,7 @@ function App() {
       getMovies(SEARCH_API + searchInput);
     } else {
       // does this make too many calls? Save featured to local storage first?
+      // see below for possible solution
       getMovies(FEATURED_API);
     }
   }, [searchInput]);
@@ -66,6 +67,16 @@ function App() {
     setMovies(filteredMovies);
   }
 
+  // Only need the onSubmit if not using the 'auto-search'
+  const handleOnSubmit = (e) => {
+    e.preventDefault();
+
+    if (searchInput) {
+      getMovies(SEARCH_API + searchInput);
+      setSearchInput("");
+    }
+  };
+
   const toggleModal = (id) => {
     // **FIX** first movie takes 2 clicks to open
     if (id === movieData.id) {
@@ -77,7 +88,7 @@ function App() {
     <div className="app">
       {/* change header to a Search component */}
       <header>
-        <form /*onSubmit={handleOnSubmit}*/>
+        <form onSubmit={handleOnSubmit}>
           <input
             className="searchBar"
             placeholder="Search movies..."
@@ -131,16 +142,6 @@ function App() {
 }
 
 export default App;
-
-// Only need the onSubmit if not using the 'auto-search'
-// const handleOnSubmit = (e) => {
-//   e.preventDefault();
-
-//   if (searchInput) {
-//     getMovies(SEARCH_API + searchInput);
-//     setSearchInput("");
-//   }
-// };
 
 // Maybe use onchangeHandler for performance (less rerenders?)
 // const onChangeHandler = (e) => {
