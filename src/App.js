@@ -21,14 +21,15 @@ const SEARCH_API = `https://api.themoviedb.org/3/search/movie?&api_key=${REACT_A
 //TODO:
 // refactor (ie. movieCard, moviesContainer etc)
 // change movie search to include actors in results
-// add actor name/link to the result card(s). Link will search actors other movies
-// add button for trailer to result card
-// add modal for trailer (trailer from tmdb/imbd or youtube). Get API key if needed
+// add actor name/link to the details card(s). Link will search actors other movies
 // FIX: or get rid of form onSubmit. Not displaying results before clearing field -> because onChange defaults to featured movies...
 // CHANGE: header etc into own component(s)
+// ADD: Context so not raising state
+// ADD: Router - react-router-dom (BrowserRouter or HashRouter if on gh-pages)
 // MAYBE: change display to rows with featured, top rated, favorites sections. If do this have movie preview at top of page (not modal) on desktop. keep modal on mobile
 // if adding favorites, will need to set up a database to save them
 // MAYBE: change the movie description to flip the card to display rather then sliding up onto the card OR make poster image resize so both are visible
+// DEPLOY: to gh-pages or to netlify / heroku(if adding backend)
 // *** make sure env variables aren't being seen. Need to add server or do on back end? ***
 // -----
 
