@@ -26,7 +26,8 @@ const VideoPreview = ({ videoKey }) => {
     <div className="video">
       <YouTubePlayer
         className="videoPlayer"
-        url={`${youTube_API}${videoKey}`}
+        url={ `${youTube_API}${videoKey}` }
+        controls={1}
       />
     </div>
   );
