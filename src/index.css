@@ -157,7 +157,7 @@ header {
   align-items: center;
   justify-content: center;
   /* @media under 900 - display flex */
-  display: flex;
+  /* display: flex; */
 
   /* border: 1px solid black; */
   /* flex-direction: column; */
@@ -166,10 +166,9 @@ header {
 
 .movieDescription {
   padding: 5px;
-  /* flex: 1; */
 
-  display: flex;
-  align-content: center;
+  /* display: flex; */
+  align-content: space-between;
 }
 
 .video {

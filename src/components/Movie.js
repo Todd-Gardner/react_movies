@@ -77,7 +77,7 @@ const Movie = ({
         </div>
 
         <div className="movieOverview">
-          <h2>{title} Overview:</h2>
+          <h2>{title}</h2>
           <p>{overview}</p>
           <button onClick={() => showDetails()}>Movie Details + Trailer</button>
         </div>
