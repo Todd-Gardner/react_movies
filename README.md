@@ -1,3 +1,4 @@
+### [Live Demo](https://todd-gardner.github.io/react_movies)
 ## Welcome to My Movies App!
 This is a REACT movies app. When the app loads it connects to the TMDB to get a list of featured movies and displays them, along with the movie poster and a color coded rating for each movie.
 When the user hovers over a movie the description of the movie slides up onto the card.
