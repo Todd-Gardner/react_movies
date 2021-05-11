@@ -3,7 +3,7 @@
 This is a REACT movies app. When the app loads it connects to the TMDB to get a list of featured movies and displays them, along with the movie poster and a color coded rating for each movie.
 When the user hovers over a movie the description of the movie slides up onto the card.
 Users can also search for movies using the search bar at the top of the screen. I added auto search functionallity - after the user has entered in a minimum of 3 letters the relevant movies are displayed and change with each letter entered. When the user deletes letters, the list is updated accordingly and defaults to the featured list when there are less then 3 letters entered. (*This feature may change if it isn't performant or if it is making too many API requests*).
-Clicking on the movie card opens up the movie details page that displays the movie title, description, a YouTube video trailer and a (horisontal scroll) list of 10 actors with their names and profile pictures.
+Clicking on the movie card opens up the movie details page that displays the movie title, description, a YouTube video trailer and a (horizontal scroll) list of 10 actors with their names and profile pictures.
 
 This app was bootstrapped with create-react-app for basic boilerplate code.
 
