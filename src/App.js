@@ -92,6 +92,7 @@ function App() {
       <header>
         <form /*onSubmit={handleOnSubmit}*/>
           <input
+            // type="search"
             className="searchBar"
             placeholder="Search movies..."
             value={searchInput}
@@ -108,6 +109,7 @@ function App() {
           videos={movieData.videos}
           title={movieData.title}
           poster_path={movieData.poster_path}
+          closeModal={() => setModalOpen(false)}
           //movieData={movieData}
         />
       )}

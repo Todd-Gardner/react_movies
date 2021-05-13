@@ -151,7 +151,24 @@ header {
   /* justify-content: space-between; */
 }
 
+.detailsHeader {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.detailsHeader button {
+  background:none;
+  color: white;
+  border: 1px solid white;
+  border-radius: 5px;
+}
+
 .movieDetails {
+  /* try....
+  max-width: 100%;
+  overflow: hidden */
+
   width: 100%;
   height: 100%;
   align-items: center;
@@ -172,6 +189,13 @@ header {
 }
 
 .video {
+  /* try...
+  position: relative;
+  padding-bottom: 56.25%;
+  padding-top: 25px;
+  width: 300%;
+  left: -100%; */
+
   display: flex;
 
   /* border: 1px solid white; */
@@ -184,6 +208,13 @@ header {
 }
 
 .videoPlayer {
+  /* try...
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%; */
+
   width: 100%;
   height: 100%;
   object-fit: scale-down;
@@ -192,7 +223,6 @@ header {
 .moviePoster {
   display: flex;
   justify-content: center;
-  /* flex: 2; */
   position: relative;
   /* height: 100%; */
   width: 50%;

@@ -3,7 +3,7 @@ import YouTubePlayer from "react-player/youtube";
 
 // The movie display (to be a modal...?)
 const VideoPreview = ({ videoKey }) => {
-  const youTube_API = "https://www.youtube.com/watch?v=";
+  const youTube_API = "https://www.youtube.com/watch?v="; //embed/
   //let key = videoKey || "BdJKm16Co6M";
   // const [trailer, setTrailer] = useState();
   // useEffect(() => {
@@ -26,8 +26,10 @@ const VideoPreview = ({ videoKey }) => {
     <div className="video">
       <YouTubePlayer
         className="videoPlayer"
-        url={ `${youTube_API}${videoKey}` }
-        controls={1}
+        url={`${youTube_API}${videoKey}`}
+        controls={true}
+        showinfo={"0"} //depreciated...
+        allowFullScreen
       />
     </div>
   );

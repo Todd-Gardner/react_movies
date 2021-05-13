@@ -9,8 +9,9 @@ const MovieDetails = ({
   overview,
   releaseDate,
   poster_path,
+  closeModal
 }) => {
-  const IMAGE_API = `https://image.tmdb.org/t/p/w1280`; //also im Movies.js
+  const IMAGE_API = `https://image.tmdb.org/t/p/w1280`; //also in Movies.js
 
   const [actorList, setActorList] = useState();
   const [videoKey, setVideoKey] = useState();
@@ -57,9 +58,12 @@ const MovieDetails = ({
 
   return (
     <div className="detailsContainer">
-      <h2>
-        {title}({releaseDate.substring(0, 4)})
-      </h2>
+      <div className="detailsHeader">
+        <h2>
+          {title}({releaseDate.substring(0, 4)})
+        </h2>
+        <button onClick={closeModal}>X</button>
+      </div>
       <div className="movieDetails">
         <div className="movieDescription">{overview}</div>
         {videoKey ? (
@@ -98,6 +102,17 @@ const MovieDetails = ({
             );
           })}
       </div>
+      <button
+        style={{
+          width: "100%",
+          margin: 5,
+          color: "white",
+          background: "#373b69",
+        }}
+        onClick={closeModal}
+      >
+        Close
+      </button>
     </div>
   );
 };
